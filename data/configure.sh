@@ -1,7 +1,9 @@
 #!/bin/bash
 
 build_arch=$1
-version=$2
+if [ $version = 'latest' ]; then
+    version=`curl -s https://api.github.com/repos/fatedier/frp/releases/latest | grep browser_download_url | cut -d '"' -f4 | cut -d '_' -f2 | head -1`
+fi
 frp_url="https://github.com/fatedier/frp/releases/download/"
 app_path="/usr/src"
 
